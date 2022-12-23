@@ -1,0 +1,14 @@
+*, *::after, *::before {
+    /* box-sizing é melhor de trabalhar pq incorporta o padding dentro do width e height*/
+    box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif;
+}
+
+body {
+    /* background linear interessante */
+    background: linear-gradient(to right, hsla(276, 100%, 50%, 0.712), hsl(175, 100%, 50%));
+}
+
+.clock {
+    font-size: large;
+}
