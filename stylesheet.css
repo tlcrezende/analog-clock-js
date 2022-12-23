@@ -7,8 +7,113 @@
 body {
     /* background linear interessante */
     background: linear-gradient(to right, hsla(276, 100%, 50%, 0.712), hsl(175, 100%, 50%));
+    /* libera o elemento pra ser flexivel */
+    display: flex;
+    /* centraliza tudo */
+    justify-content: center;
+    align-items: center;
+    /* adiciona uma altura mínima em relação ao topo da página, mas isso adiciona um scroll bar */
+    min-height: 100vh;
+    /* esconde a scroll bar */
+    overflow: hidden;
 }
 
 .clock {
-    font-size: large;
+    width: 300px;
+    height: 300px;
+    /* rgba para deixar uma certa transparência de 80%*/
+    background-color: rgba(255, 255, 255, 0.8);
+    /* faz o quadrado virar um circulo*/
+    border-radius: 50%;
+    /* adiciona borda no circulo*/
+    border: 2px solid black;
+    /* Para podermos colocar o relógio onde quisermos*/
+    position: relative;
+}
+
+.clock .number {
+    /* inicializa variavel rotation*/
+    --rotation: 0;
+    /* Cria uma posição absoluta em cima do ascestral realtivo, isto é, vai acompanhar o ancestral "fixamente"*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* Alinha no centro do quadrado*/
+    text-align: center;
+    /* Rotaciona o quadrado-eixo em cima de uma variável rotation*/
+    transform: rotate(var(--rotation));
+    font-size: 1.5rem;
+}
+
+.clock .number1 { --rotation: 30deg; }
+.clock .number2 { --rotation: 60deg; }
+.clock .number3 { --rotation: 90deg; }
+.clock .number4 { --rotation: 120deg; }
+.clock .number5 { --rotation: 150deg; }
+.clock .number6 { --rotation: 180deg; }
+.clock .number7 { --rotation: 210deg; }
+.clock .number8 { --rotation: 240deg; }
+.clock .number9 { --rotation: 270deg; }
+.clock .number10 { --rotation: 300deg; }
+.clock .number11 { --rotation: 330deg; }
+
+.clock .hand {
+    /* inicializa variavel rotation*/
+    --rotation: 0;
+    position: absolute;
+    /* posicionado no centro, isso é, metade da altura e metada da base */
+    bottom: 50%;
+    left: 50%;
+    background-color: black;
+    /* O retangulo inicial do ponteiro está na origem, para que sejá o centro da base do retangulo 
+    temos que mover ele metade pra trás, isto é, -50%, depois usa calc para multiplicar a variavel
+    rotation por 1 deg */
+    transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+    /* seta a origem do transform para a base do ponteiro */
+    transform-origin: bottom;
+    /* arredonda a ponta do ponteiro */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    /* garante a sobreposição do ponteiro em relação ao relógio, o ponteiro na frente */
+    z-index: 1;
+}
+
+/* aredondamento do começo do ponteiro */
+.clock::after {
+    /* adiciona um content só pra informar que é outro pseudo-element */
+    content: '';
+    position: absolute;
+    background-color: black;
+    /* faz ele sobrepor a tudo */
+    z-index: 11;
+    width: 15px;
+    height: 15px;
+    /* centraliza ele no relógio */
+    top: 50%;
+    left: 50%;
+    /* centraliza o centro do componente no centro do relógico */
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+
+}
+
+.clock .hand.second {
+    /* 45% do quadrado que ele está absoluto */
+    height: 45%;
+    width: 2px;
+    background-color: red;
+}
+
+.clock .hand.minute {
+    /* 40% do quadrado que ele está absoluto */
+    height: 40%;
+    width: 7px;
+    background-color: black;
+}
+
+.clock .hand.hour {
+    /* 35% do quadrado que ele está absoluto */
+    height: 35%;
+    width: 10px;
+    background-color: black;
 }
