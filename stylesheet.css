@@ -14,8 +14,6 @@ body {
     align-items: center;
     /* adiciona uma altura mínima em relação ao topo da página, mas isso adiciona um scroll bar */
     min-height: 100vh;
-    /* esconde a scroll bar */
-    overflow: hidden;
 }
 
 .clock {
@@ -117,3 +115,4 @@ body {
     width: 10px;
     background-color: black;
 }
+
